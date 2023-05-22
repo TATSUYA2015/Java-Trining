@@ -2,10 +2,13 @@
      * Sampleは、"Hello Sample Java!"と表示するプログラムです。
      */
 
-package jp.learningdesign,javatudy;
+//package宣言
+package jp.learningdesign.javatudy;
 
+
+
+//クラス定義
 public class Sample {
-
     /**Javadoc形式
      * author: Tatsuya Wakatsuki
      * copyright:
