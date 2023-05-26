@@ -13,69 +13,58 @@
 #   ボリューム名2:
 #   ...
 
+version: '3'
+services:
+  db:
+    image:
+    container_name: 
+    volumes:
+      
+
+  java:
+
+
+
+
+
+
+
+
 
 # version: '3'
 # services:
 #   java:
+#     image: openjdk:17.0.7
 #     container_name: java
-#     build: ./
+#     env_file:
+#       - ./mysql/db.env # mysqlと同じものを指定
 #     tty: true
+#     working_dir: /app #コンテナ内のワーキングディレクトリ
 #     volumes:
-#       - ./src:/java_project/
+#       - type: bind # source(ホストマシン)のディレクトリをtarget(コンテナ)にマウントする
+#         source: ../spring_prj
+#         target: /app
+#     ports:
+#       - 8080:8080 # 通常実行
+#       - 5050:5050 # デバッグ用
+#     depends_on:
+#       - mysql # 「mysql」の後で起動
+
 #   mysql:
+#     # imageの指定ではなく、Dockerfileを用意している。
+#     # 理由：ビルドの過程で必要な情報を読み取ることが可能。
+#     # 補足：docker-compose.ymlではビルド後にコンテナへマウントする。
 #     build: ./mysql
 #     container_name: mysql
 #     env_file:
-#       - ./mysql/db.env # MySQL設定ファイル
+#       - ./mysql/db.env #MySQLの設定ファイル
 #     volumes:
-#       - ./mysql/data:/var/lib/mysql # 実データの永続化
-#       - ./mysql/log:/var/log/mysql # logの永続化
+#       - mysql_data:/var/lib/mysql #実データの永読化
+#       - ./mysql/log:/var/log/mysql #logの永読化
+#       - ./mysql/sql_init:/docker-entrypoint-initdb.d
 #     ports:
 #       - 3306:3306
-# 
-# networks:
-#   ネットワーク名1:
-#   ネットワーク名2:
-#   ...
-# 
+
 # volumes:
-#   ボリューム名1:
-#   ボリューム名2:
-
-version: '3'
-services:
-  java:
-    image: openjdk:17.0.7
-    container_name: java
-    env_file:
-      - ./mysql/db.env # mysqlと同じものを指定
-    tty: true
-    working_dir: /app #コンテナ内のワーキングディレクトリ
-    volumes:
-      - type: bind # source(ホストマシン)のディレクトリをtarget(コンテナ)にマウントする
-        source: ../spring_prj
-        target: /app
-    ports:
-      - 8080:8080 # 通常実行
-      - 5050:5050 # デバッグ用
-    depends_on:
-      - mysql # 「mysql」の後で起動
-
-  mysql:
-    # imageの指定ではなく、Dockerfileを用意している。
-    # 理由：ビルドの過程で必要な情報を読み取ることが可能。
-    # 補足：docker-compose.ymlではビルド後にコンテナへマウントする。
-    build: ./mysql
-    container_name: mysql
-    env_file:
-      - ./mysql/db.env #MySQLの設定ファイル
-    volumes:
-      - mysql_data:/var/lib/mysql #実データの永読化
-      - ./mysql/log:/var/log/mysql #logの永読化
-      - ./mysql/sql_init:/docker-entrypoint-initdb.d
-    ports:
-      - 3306:3306
-
-volumes:
-  mysql_data:
-    name: spring_boot_mysql
+#   mysql_data:
+#     name: spring_boot_mysql
